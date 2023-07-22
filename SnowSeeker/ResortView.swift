@@ -21,9 +21,19 @@ struct ResortView: View {
     var body: some View {
         ScrollView {
             VStack(alignment: .leading, spacing: 0) {
-                Image(decorative: resort.id)
-                    .resizable()
-                    .scaledToFit()
+                ZStackLayout(alignment: .bottomLeading) {
+                    Image(decorative: resort.id)
+                        .resizable()
+                        .scaledToFit()
+                    
+                    Text("Photo by \(resort.imageCredit)")
+                        .font(.caption2)
+                        .padding(8)
+                        .foregroundColor(.white)
+                        .background(.black.opacity(0.6))
+                        .clipShape(RoundedRectangle(cornerRadius: 5))
+                        .offset(x: 5, y: -10)
+                }
                 
                 HStack {
                     if sizeClass == .compact && typeSize > .large {
@@ -65,14 +75,18 @@ struct ResortView: View {
                         }
                     }
                     .buttonStyle(.borderedProminent)
-                    .padding()
+                    .padding(.vertical)
                 }
                 .padding(.horizontal)
             }
         }
         .navigationTitle("\(resort.name), \(resort.country)")
         .navigationBarTitleDisplayMode(.inline)
-        .alert(selectedFacility?.name ?? "More information", isPresented: $showingFacility, presenting: selectedFacility) { _ in
+        .alert(
+            selectedFacility?.name ?? "More information",
+            isPresented: $showingFacility,
+            presenting: selectedFacility
+        ) { _ in
         } message: { facility in
             Text(facility.description)
         }
