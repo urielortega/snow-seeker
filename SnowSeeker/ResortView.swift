@@ -33,6 +33,7 @@ struct ResortView: View {
                         .background(.black.opacity(0.6))
                         .clipShape(RoundedRectangle(cornerRadius: 5))
                         .offset(x: 5, y: -10)
+                        .accessibilityHidden(true)
                 }
                 
                 HStack {

@@ -25,6 +25,17 @@ struct ResortDetailsView: View {
         String(repeating: "$", count: resort.price)
     }
     
+    var priceLabel: String {
+        switch resort.price {
+        case 1:
+            return "Low"
+        case 2:
+            return "Moderate"
+        default:
+            return "High"
+        }
+    }
+    
     var body: some View {
         Group {
             VStack {
@@ -33,6 +44,8 @@ struct ResortDetailsView: View {
                 Text(size)
                     .font(.title3)
             }
+            .accessibilityElement()
+            .accessibilityLabel("Size: \(size).")
             
             VStack {
                 Text("Price")
@@ -40,6 +53,8 @@ struct ResortDetailsView: View {
                 Text(price)
                     .font(.title3)
             }
+            .accessibilityElement()
+            .accessibilityLabel("Price: \(priceLabel).")
         }
         .frame(maxWidth: .infinity)
     }

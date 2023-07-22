@@ -18,6 +18,8 @@ struct SkiDetailsView: View {
                 Text("\(resort.elevation)m")
                     .font(.title3)
             }
+            .accessibilityElement()
+            .accessibilityLabel("Elevation: \(resort.elevation) meters.")
             
             VStack {
                 Text("Snow")
@@ -25,6 +27,9 @@ struct SkiDetailsView: View {
                 Text("\(resort.snowDepth)cm")
                     .font(.title3)
             }
+            .accessibilityElement()
+            .accessibilityLabel("Snow depth: \(resort.snowDepth) centimeters.")
+
         }
         .frame(maxWidth: .infinity)
     }
